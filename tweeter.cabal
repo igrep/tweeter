@@ -1,0 +1,37 @@
+name:              tweeter
+version:           0.0.0
+license:           MIT
+license-file:      LICENSE
+author:            YAMAMOTO Yuji
+maintainer:        YAMAMOTO Yuji <whosekiteneverfly@gmail.com>
+synopsis:          My write-only Twitter client based on twitter-conduit.
+description:       My write-only Twitter client based on twitter-conduit.
+category:          Web
+stability:         Experimental
+cabal-version:     >= 1.8
+build-type:        Simple
+homepage:          https://github.com/igrep/tweeter
+
+source-repository head
+  type: git
+  location: https://github.com/igrep/tweeter.git
+
+executable tweeter
+  buildable: True
+  ghc-options: -Wall
+  main-is: tweeter.hs
+  other-modules:
+      Tweeter.Authentication
+    , Tweeter.Post
+    , Tweeter.Settings
+
+  build-depends:
+      base >= 4.0
+    , Cabal >= 1.18
+    , text >= 0.11
+    , bytestring >= 0.9
+    , yaml
+    , http-conduit
+    , twitter-conduit
+    , transformers >= 0.4
+    , authenticate-oauth >= 1.5
