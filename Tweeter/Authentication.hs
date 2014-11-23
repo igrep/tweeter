@@ -40,7 +40,7 @@ module Tweeter.Authentication
 import qualified Data.ByteString.Char8 as BSC8
 import System.IO
 
-import Web.Twitter.Conduit.Monad (twitterOAuth)
+import Web.Twitter.Conduit
 import qualified Web.Authenticate.OAuth as OA
 import Control.Monad.IO.Class
 import Network.HTTP.Conduit
@@ -71,13 +71,13 @@ buildTWInfo
   -> String
   -> String
   -> TWInfo
-buildTWInfo  consumerKey consumerSecret accessToken accessSecret = (setCredential oauth cred def)
+buildTWInfo consumerKey consumerSecret accessToken accessSecret = (setCredential oauth cred OA.def)
   where
     oauth = twitterOAuth
-      { oauthConsumerKey = BSCS8.pack consumerKey
-      , oauthConsumerSecret = BSCS8.pack consumerSecret
+      { OA.oauthConsumerKey = BSC8.pack consumerKey
+      , OA.oauthConsumerSecret = BSC8.pack consumerSecret
       }
-    cred = Credential
-      [ ("oauth_token", BSCS8.pack accessToken)
-      , ("oauth_token_secret", BSCS8.pack accessSecret)
+    cred = OA.Credential
+      [ ("oauth_token", BSC8.pack accessToken)
+      , ("oauth_token_secret", BSC8.pack accessSecret)
       ]

@@ -38,23 +38,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 module Tweeter.Post (post) where
 
 import Web.Twitter.Conduit
-
-import Web.Authenticate.OAuth as OA
-import qualified Network.URI as URI
 import Network.HTTP.Conduit
-import qualified Data.Map as M
-import qualified Data.ByteString.Char8 as BSC8
-import qualified Data.CaseInsensitive as CI
-import Control.Applicative
-import Control.Monad.IO.Class
-import Control.Monad.Base
-import Control.Monad.Trans.Resource
-import System.Environment
-import Control.Monad.Logger
-import Control.Lens
+import qualified Data.Text as T
 
 post :: String -> TWInfo -> IO ()
-post status TWInfo = do
+post status twInfo = do
   res <- withManager $ \mgr -> do
-    call twInfo mgr $ update status
+    call twInfo mgr $ update $ T.pack status
   print res
