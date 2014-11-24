@@ -1,7 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ConstraintKinds #-}
-{-# LANGUAGE FlexibleContexts #-}
-
 {-
 Most code of this file is copied from one of the samples of Takahiro Himura's twitter-conduit.
   https://github.com/himura/twitter-conduit/blob/46b8f37e55f10eed3c71e4245ea94c5e17cfca87/sample/Common.hs
